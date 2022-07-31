@@ -1,25 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Navigate, Route, Routes } from "react-router-dom";
+import { AppRoute } from './const';
+import LoginPage from './pages/LoginPage';
+import RegistrationPage from './pages/RegistrationPage';
+import TaskPage from './pages/TaskPage';
 
-function App() {
+function App(): JSX.Element {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path={AppRoute.login} element={<LoginPage />} />
+        <Route path={AppRoute.registration} element={<RegistrationPage />} />
+        <Route path={AppRoute.task} element={<TaskPage />} />
+        <Route path="*" element={<Navigate to={AppRoute.task} replace />} />
+      </Routes>
+    </>
   );
 }
 
