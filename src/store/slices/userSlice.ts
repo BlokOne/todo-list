@@ -5,6 +5,7 @@ const initialState = {
   id: "",
   count: 0,
   state: "All",
+  tasks: [];
 };
 
 const userSlice = createSlice({
@@ -19,16 +20,20 @@ const userSlice = createSlice({
       state.count = action.payload.count
     },
     setState(state, action) {
-      state.state = action.payload.state;
+      state.tasks = [...action.payload]
+    },
+    setTasks(state, action) {
+      state.tasks = action.payload.tasks;
     },
     removeUser(state) {
       state.email = null;
       state.id = "";
       state.count = 0;
       state.state = "All";
+      state.tasks = [];
     }
   }
 })
 
-export const { setUser, setCount, removeUser, setState } = userSlice.actions;
+export const { setUser, setCount, removeUser, setState, setTasks } = userSlice.actions;
 export default userSlice.reducer;
